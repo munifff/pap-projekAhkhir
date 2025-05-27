@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail Berita - Perpustakaan Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .news-image {
+            max-height: 400px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .comment-section {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Perpustakaan Digital</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="katalog.html">Katalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="berita.html">Berita</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Detail Berita -->
+    <main class="container my-5">
+        <article>
+            <h1 class="mb-3">Peluncuran Koleksi Buku Baru di Perpustakaan Digital</h1>
+            <p class="text-muted">Diterbitkan pada 18 Mei 2025 oleh Admin</p>
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=900&q=80"
+                alt="Peluncuran Buku" class="news-image mb-4" />
+
+            <p>
+                Perpustakaan Digital dengan bangga mengumumkan peluncuran koleksi buku terbaru yang mencakup berbagai
+                genre dan topik, mulai dari teknologi, bisnis, hingga sastra modern.
+                Koleksi ini bertujuan mendukung pembelajaran digital bagi semua kalangan, terutama pelajar dan
+                mahasiswa.
+            </p>
+            <p>
+                Dengan fitur peminjaman digital yang mudah, kini pengguna dapat mengakses buku-buku terbaru tanpa harus
+                datang langsung ke perpustakaan fisik.
+                Kami juga menyediakan berbagai materi pendukung yang dapat membantu dalam proses belajar dan penelitian.
+            </p>
+            <p>
+                Jangan lewatkan kesempatan untuk menjelajahi koleksi terbaru ini dan nikmati kemudahan membaca kapan
+                saja dan di mana saja.
+            </p>
+        </article>
+
+        <!-- Komentar -->
+        <section class="comment-section">
+            <h3>Komentar</h3>
+
+            <!-- Daftar komentar -->
+            <div id="commentsList" class="mb-4">
+                <div class="mb-3 p-3 bg-light rounded">
+                    <strong>Andi</strong> <small class="text-muted">(17 Mei 2025)</small>
+                    <p>Informasi yang sangat bermanfaat, terima kasih telah meng-update koleksi buku.</p>
+                </div>
+                <div class="mb-3 p-3 bg-light rounded">
+                    <strong>Sari</strong> <small class="text-muted">(18 Mei 2025)</small>
+                    <p>Sangat senang dengan kemudahan akses buku baru ini. Semoga koleksi makin lengkap!</p>
+                </div>
+            </div>
+
+            <!-- Form komentar -->
+            <form id="commentForm">
+                <div class="mb-3">
+                    <label for="nameInput" class="form-label">Nama</label>
+                    <input type="text" id="nameInput" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label for="commentInput" class="form-label">Komentar</label>
+                    <textarea id="commentInput" rows="3" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim Komentar</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script sederhana untuk menambahkan komentar ke daftar tanpa server
+        const form = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const name = document.getElementById('nameInput').value.trim();
+            const comment = document.getElementById('commentInput').value.trim();
+
+            if (name && comment) {
+                const date = new Date();
+                const dateString = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                const newComment = document.createElement('div');
+                newComment.className = 'mb-3 p-3 bg-light rounded';
+                newComment.innerHTML = `<strong>${name}</strong> <small class="text-muted">(${dateString})</small><p>${comment}</p>`;
+
+                commentsList.appendChild(newComment);
+
+                form.reset();
+            }
+        });
+    </script>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>
